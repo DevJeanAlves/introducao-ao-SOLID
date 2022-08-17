@@ -1,0 +1,329 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Reantalx app API",
+    "description": "This is a api about selling and buying vehicles",
+    "version": "1.0.0",
+    "contact": {
+      "email": "jean_devsoft@outlook.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "title": "Gerenciamento de Usuários",
+        "summary": "Criar usuário",
+        "description": "`Registra` um novo usuário",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "name": "Fulano",
+                "email": "usuario@exemplo.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Operação executada com sucesso!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "admin": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "example": {
+                    "admin": "False",
+                    "id": "3KOI2-34KDJ-33PP-431F-08",
+                    "name": "Fulano",
+                    "email": "usuario@exemplo.com",
+                    "created_at": "10-08-22:00:44:00",
+                    "updated_at": "10-08-22:00:45:00"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usuário inválido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Usuário já cadastrado."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "title": "Pesquisar usuário",
+        "summary": "Buscar lista de usuários",
+        "description": "`Busca` uma lista de usuários cadastrados",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "admin": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "admin": "False",
+                      "id": "3KOI2-34KDJ-33PP-431F-08",
+                      "name": "Fulano",
+                      "email": "usuario@exemplo.com",
+                      "created_at": "10-08-22:00:44:00",
+                      "updated_at": "10-08-22:00:45:00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usuário Não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Usuário não encontrado."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "description": "`Busca` o perfil de acordo com `user_id`.",
+        "summary": "Buscar usuário",
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "admin": "False",
+                    "id": "3KOI2-34KDJ-33PP-431F-08",
+                    "name": "Fulano",
+                    "email": "usuario@exemplo.com",
+                    "created_at": "10-08-22:00:44:00",
+                    "updated_at": "10-08-22:00:45:00"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Id de usuário invalido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Id de usuário inválido"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "description": "`Altera` o status de acesso de um usuário para `admin`",
+        "summary": "Alterar Acesso.",
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "admin": true,
+                    "id": "3KOI2-34KDJ-33PP-431F-08",
+                    "name": "Fulano",
+                    "email": "usuario@exemplo.com",
+                    "created_at": "10-08-22:00:44:00",
+                    "updated_at": "10-08-22:00:45:00"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário inválido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Usuário inválido."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

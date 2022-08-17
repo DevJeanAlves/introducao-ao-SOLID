@@ -1,0 +1,342 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Web User Database",
+    "description": "This is an Web aplication interface",
+    "version": "1.0.0",
+    "contact": {
+      "email": "jean_devsoft@outlook.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "title": "Gerenciamento de usuários",
+        "summary": "Criar um novo usuário.",
+        "description": "`Registrar` novo usuário.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "JadeFAFS",
+                  "email": "jade@exemplo.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "admin": {
+                        "type": "boolean"
+                      },
+                      "enunm": [],
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "example": {
+                    "admin": "False",
+                    "id": "a354353-35df-6g5h-4Fgdff-a7456gdfg",
+                    "name": "User123",
+                    "email": "jade@exemplo.com",
+                    "created_at": "2022-07-27T12:26.9922",
+                    "updated_at": "2022-07-27T12:26.9922"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User already exists."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "`Buscar` lista de usuários",
+        "summary": "Busca uma lista de usuarios",
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "admin": {
+                        "type": "boolean"
+                      },
+                      "enunm": [],
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "admin": "False",
+                      "id": "a354353-35df-6g5h-4Fgdff-a7456gdfg",
+                      "name": "Usuario Exemplo",
+                      "email": "jade@exemplo.com.br",
+                      "created_at": "2022-07-27T12:26.9922",
+                      "updated_at": "2022-07-27T12:26.9922"
+                    },
+                    {
+                      "admin": "true",
+                      "id": "fy54l53-55mf-6g5h-4Fgdsf-a7456gmfg",
+                      "name": "Jean alves",
+                      "email": "jean_devsoft@outlook.com",
+                      "created_at": "2022-07-01T13:26.9922",
+                      "updated_at": "2022-07-02T10:33.9922"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usuario não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Usuário não encontrado"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "description": "Buscar perfil por `user_id`",
+        "summary": "Busca o perfil do usuário específico",
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "enunm": [],
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "admin": "true",
+                    "id": "fy54l53-55mf-6g5h-4Fgdsf-a7456gmfg",
+                    "name": "Jean alves",
+                    "email": "jean_devsoft@outlook.com",
+                    "created_at": "2022-07-01T13:26.9922",
+                    "updated_at": "2022-07-02T10:33.9922"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Usuário não encontrado"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "description": "Tornar usuário um `administrador`",
+        "summary": "Torna um usuário admin",
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "enunm": [],
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "admin": "true",
+                    "id": "a354353-35df-6g5h-4Fgdff-a7456gdfg",
+                    "name": "Jean alves",
+                    "email": "jean_devsoft@outlook.com",
+                    "created_at": "2022-07-01T13:26.9922",
+                    "updated_at": "2022-07-02T10:33.9922"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuario não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Usuário não encontrado"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
